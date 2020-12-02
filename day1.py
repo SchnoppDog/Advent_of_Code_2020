@@ -201,11 +201,11 @@ listOfNumbers = [1953,
 
 for indexOne in listOfNumbers:
     for indexTwo in listOfNumbers:
-        # Aufgabenteil 1
+        # Task 1
         # if indexOne + indexTwo == 2020:
              # print(f"IndexOne: {indexOne} \nIndexTwo: {indexTwo} \nSum: {indexOne * indexTwo * indexThree}")
              
-        # Aufgabenteil 2
+        # Task 2
         for indexThree in listOfNumbers:
             if indexOne + indexTwo + indexThree == 2020:
                 print(f"IndexOne: {indexOne} \nIndexTwo: {indexTwo} \nIndexThree: {indexThree} \nSum: {indexOne * indexTwo * indexThree}")
