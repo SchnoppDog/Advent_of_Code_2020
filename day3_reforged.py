@@ -1,52 +1,24 @@
-# steps               = 3
-# stepsMoved          = steps
-r1d1                = True
-r3d1                = False
-r5d1                = False
-r7d1                = False
+# Note: This is quite a horrific code and can be written A LOT BETTER. But for general comprehension it's ok.
+# Will be updated in the future (I guess ...)
+
 rxd1Steps           = [1, 3, 5, 7]
-# r1d1Steps           = 1
-# r3d1Steps           = 3
-# r5d1Steps           = 5
-# r7d1Steps           = 7
-stepsMoves          = 0
+r1d2Steps           = 2
+r1d2                = False
 skipFirstLine       = False
 treeCounter         = 0
 openSpaceCounter    = 0
 charRepition        = 1
 charRepitionTimes   = 1
+lineNumber          = 1
+treeSum             = 1
+openSpaceSum        = 1
 openSpace           = "."
 tree                = "#"
-slopes              = {
-    
-}
+slopes              = {}
 
-lines = 2
-
-# "R1D1": {
-#         "Trees": 0,
-#         "Open Space": 0,
-#     },
-#     "R3D1": {
-#         "Trees": 0,
-#         "Open Space": 0,
-#     },
-#     "R5D1": {
-#         "Trees": 0,
-#         "Open Space": 0,
-#     },
-#     "R7D1": {
-#         "Trees": 0,
-#         "Open Space": 0,
-#     },
-#     "R1D2": {
-#         "Trees": 0,
-#         "Open Space": 0,
-#     }
-
+# Task 1 and first half of 2
 for steps in rxd1Steps:
     stepsMoved = steps
-    print(stepsMoved)
 
     with open("files_for_days/day3.txt", "r") as file:
             
@@ -67,9 +39,7 @@ for steps in rxd1Steps:
 
                     else:
                         openSpaceCounter += 1
-                    print("\n\tLines: ", lines)
-                    print(stepsMoved)
-                    lines +=1
+
                     stepsMoved += steps
                 
                 else:
@@ -80,8 +50,46 @@ for steps in rxd1Steps:
         slopes[f"R{steps}D1"]["Open Space"] = openSpaceCounter
         treeCounter                         = 0
         openSpaceCounter                    = 0
-        lines = 0
+        skipFirstLine                       = False
 
-# print("Trees: ", treeCounter)
-# print("Open Space: ", openSpaceCounter)
 print(slopes)
+
+# Task 2 second half
+skipFirstLine       = False
+treeCounter         = 0
+openSpaceCounter    = 0
+lineNumber          = 1
+charRepitionTimes   = 1
+steps               = 1
+stepsMoved          = steps
+
+with open("files_for_days/day3.txt", "r") as file:
+            
+    for line in file:
+        pattern = []
+        pattern.append(line.split())
+
+        for characters in pattern:
+            if skipFirstLine == True:
+                if lineNumber % 2 == 1:
+                    characterString = characters[0] * charRepitionTimes
+
+                    if stepsMoved / len(characterString) >= charRepition:
+                        charRepitionTimes += 1
+                        characterString = characters[0] * charRepitionTimes
+                    
+                    if characterString[stepsMoved] == "#":
+                        treeCounter += 1
+
+                    else:
+                        openSpaceCounter += 1
+
+                    stepsMoved += steps
+            
+            else:
+                skipFirstLine = True
+
+            lineNumber += 1
+
+print(treeCounter)
+print(openSpaceCounter)
