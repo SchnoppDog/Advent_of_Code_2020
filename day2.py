@@ -10,6 +10,7 @@ with open("files_for_days/day2.txt", "r") as file:
     for line in file:
         fileStripped.append(line.split())       # Line Format: 4-5 r: rrrjr -> returns [["4-5", "r:", "rrrjr"], ...]
 
+
 for charTimes in fileStripped:
     passwordTimes.append(charTimes[0].split("-"))       # charTimes Format: ["4-5", "r:", "rrrjr"] -> Returns [["4", "5"], ...]
     passwordCharacter.append(charTimes[1].replace(":", ""))         # Returns: ["r", ...]
