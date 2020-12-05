@@ -15,7 +15,6 @@ for charTimes in fileStripped:
     passwordCharacter.append(charTimes[1].replace(":", ""))         # Returns: ["r", ...]
     password.append(charTimes[2])       # Returns: ["rrrjr", ...]
 
-
 # Part 1
 # for counter in range(len(password)):
 #     charCounter = 0
@@ -23,9 +22,11 @@ for charTimes in fileStripped:
 #         if char == passwordCharacter[counter]:
 #             charCounter += 1
         
-#     if charCounter >= int(passwordTimes[counter][0]) and charCounter <= int(passwordTimes[counter][1]):
-#         print(counter)
-#         validPasswords += 1
+    # if charCounter >= int(passwordTimes[counter][0]) and charCounter <= int(passwordTimes[counter][1]):
+    #     validPasswords += 1
+    
+    # else:
+    #     invalidPasswords += 1
 
 # Part 2
 for counter in range(len(password)):
