@@ -1,8 +1,51 @@
-# def task1():
-#     with open("files_for_days/examples/day4.txt", "r") as file:
+def task1():
+    lines = []
+    with open("files_for_days/day4.txt", "r") as file:
+        for line in file:
+            line = line.replace("\n", "")
+            lines.append(line.replace("\r", ""))        # Example-Output: ["ecl:gry pid:860033327 eyr:2020 hcl:#fffffd", 
+                                                        # "byr:1937 iyr:2017 cid:147 hgt:183cm", ""]
+    
+    passports = []
+    for line in lines:
+        lineContents = line.split(" ")
+        for lineContent in lineContents:
+            passports.append(lineContent)       # Example-Output: ["ecl:gry", "pid:860033327", "eyr:2020", "hcl:#fffffd" ..., "", ...]
+    
+    passportObj         = {}
+    passportCounter     = 1
+    passportObj[f"passport_{passportCounter}"] = {}
+    for passportEntry in passports:
+        if len(passportEntry) == 0:
+            passportCounter += 1
+            passportObj[f"passport_{passportCounter}"] = {}
+            continue
+        
+        entryId     = passportEntry.split(":")[0]
+        entryValue  = passportEntry.split(":")[1]
+        # Example-Output: passportObj = {"passport_1": {"ecl": "gry", "pid": "860033327", "eyr": "2020" ...}, "passport_2": {...}}
+        passportObj[f"passport_{passportCounter}"][entryId] = entryValue
 
+    # Looping through nested dictionary
+    validPassports = 0
+    for nestedPassport in passportObj.keys():
+        # nestedPassport = passport_1, passport_2 etc.
+        passportKeys = 0
+        for passport in passportObj[nestedPassport].keys():
+            # passport = keys of passportObj with passport_1, passport_2 etc.
+            if passport == "cid":
+                # Ignoring CID-Field
+                passportKeys -= 1  
+            passportKeys += 1
+        
+        if passportKeys >= 7:
+            validPassports += 1
+    
+    print("Valid Passports: ", validPassports)
 
-# print(task1())
+# def validatePassport(passportObj):
+
+task1()
 
 # Main Concept:
 
