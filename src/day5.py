@@ -12,6 +12,7 @@ def task1():
             line = line.split(line[7], 1)
             line[1] = lineLetter + line[1]
             lines.append(line)
+        print(lines)
 
     for lineList in lines:
         upperHalfFB = 128
@@ -59,6 +60,8 @@ def task1():
 
         else:
             highestSeatId = highestSeatId
+        
+        print("Seat-IDs: ", seatIds)
 
     print("Highest Seat-ID is: ", highestSeatId)
     # print(fbValues)
@@ -68,3 +71,5 @@ def task1():
 
 
 task1()
+
+# Task 2 will be missing since I don't understand the task and what I should do...
